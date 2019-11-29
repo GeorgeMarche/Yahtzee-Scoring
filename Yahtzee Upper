@@ -1,0 +1,26 @@
+import random as rt
+import time as t
+
+# Prompt user for number of rolls and the range of the die
+n = int(input("Enter the number of rolls: \n"))
+r = int(input("Enter the highest number on the die: \n"))
+
+#Create the list
+l = list(rt.randint(1, r) for i in range(n))
+d = {}
+
+# Key-value dictionary that essentially "tallies" each number's occurrence
+t1 = t.time()
+for i in range(n):
+    if l[i] not in d:
+        d[l[i]] = 1
+    else:
+        d[l[i]] += 1
+
+# Find the max number of the number multiplied by its respective occurrences
+yahtzee_upper = max(map(lambda x,y: x*y, d, list(d[l[i]] for i in range(n))))
+t2 = t.time()
+
+# Print the final score, and the time for calculation
+print(yahtzee_upper)
+print(t2 - t1)
